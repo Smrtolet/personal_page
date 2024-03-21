@@ -1,29 +1,134 @@
 <!DOCTYPE html>
-<html>
-<title>Marko Raguz</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<style>
-body,h1 {font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-.bgimg {
-  background-image: url('hop-6327065_1920.jpg');
-  min-height: 100%;
-  background-position: center;
-  background-size: cover;
-}
-</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marko Raguz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+      flex-direction: column;
+      height: 100vh;
+    }
+    .welcome-container {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      color: #df0e0e;
+    }
+    .container{
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+      flex-direction: row;
+      height: 100%;
+      width: 100%;
+    }
+    .frame-left,
+    .frame-right{
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      height: 85%;
+    }
+    .frame-left{
+      background-image: url('seattle.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .frame-right{
+      background-image: url('zagreb.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .overlay-left,
+    .overlay-right {
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    .overlay-left{
+      color: #348a1a;
+    }
+    .overlay-right{
+      color: #1320d4;
+    }
+    .timeS,
+    .timeZ {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 20px;
+    }
+    .timeS{
+      color:#348a1a
+    }
+    .timeZ{
+      color:#1320d4
+    }
+  </style>
+</head>
 <body>
-
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-middle">
-    <h1 class="w3-jumbo w3-animate-top">COMING SOON</h1>
-    <hr class="w3-border-grey" style="margin:auto;width:40%">
-    <p class="w3-large w3-center">:)</p>
+  <div class="welcome-container">
+    <h1>Welcome Natalie!</h1>
   </div>
-</div>
+  <div class = "container">
 
+  
+  <div class="frame-left">
+    <div class="overlay-left">
+      <h2>Time in Seattle:</h2>
+      <div class="timeS" id="seattleTime"></div>
+    </div>
+  </div>
+  <div class="frame-right">
+    <div class="overlay-right">
+      <h2>Time in Zagreb:</h2>
+      <div class="timeZ" id="zagrebTime"></div>
+    </div>
+  </div>
+  </div>
+  <script>
+    function updateTime() {
+      const seattleTimeElement = document.getElementById('seattleTime');
+      const zagrebTimeElement = document.getElementById('zagrebTime');
+      
+      const options = {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      };
+      
+      const seattleTimeString = new Date().toLocaleTimeString('en-US', {...options, timeZone: 'America/Los_Angeles'});
+      const zagrebTimeString = new Date().toLocaleTimeString('en-US', {...options, timeZone: 'Europe/Zagreb'});
+      
+      seattleTimeElement.textContent = seattleTimeString;
+      zagrebTimeElement.textContent = zagrebTimeString;
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
 </body>
 </html>
